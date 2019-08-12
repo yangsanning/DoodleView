@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setClick(R.id.main_activity_save);
 
         doodleView = findViewById(R.id.main_activity_doodle_view);
-        doodleView.setStrokeWidth(5);
     }
 
     private void setClick(int id) {
@@ -96,13 +95,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             (dialog, which) -> {
                                 switch (which) {
                                     case 0:
-                                        doodleView.setColor("#000000");
+                                        doodleView.setPaintColor("#000000");
                                         break;
                                     case 1:
-                                        doodleView.setColor(getResources().getColor(R.color.colorAccent));
+                                        doodleView.setPaintColor(getResources().getColor(R.color.colorAccent));
                                         break;
                                     case 2:
-                                        doodleView.setColor("#0000ff");
+                                        doodleView.setPaintColor("#0000ff");
                                         break;
                                     default:
                                         break;
@@ -125,13 +124,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             (dialog, position) -> {
                                 switch (position) {
                                     case 0:
-                                        doodleView.setStrokeWidth(5);
+                                        doodleView.setPaintStroke(5);
                                         break;
                                     case 1:
-                                        doodleView.setStrokeWidth(10);
+                                        doodleView.setPaintStroke(10);
                                         break;
                                     case 2:
-                                        doodleView.setStrokeWidth(15);
+                                        doodleView.setPaintStroke(15);
                                         break;
                                     default:
                                         break;

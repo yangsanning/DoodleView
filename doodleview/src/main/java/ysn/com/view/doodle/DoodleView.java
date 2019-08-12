@@ -1,6 +1,7 @@
 package ysn.com.view.doodle;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import ysn.com.paint.LinePaint;
 import ysn.com.paint.PathPaint;
 import ysn.com.paint.RectPaint;
 import ysn.com.paint.base.BasePaint;
+import ysn.com.view.R;
 import ysn.com.view.doodle.type.PaintType;
 
 /**
@@ -38,17 +40,17 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
      * 画笔类型
      */
     private @PaintType
-    int paintType = PaintType.PATH;
+    int paintType;
 
     /**
      * 画笔颜色(默认黑色)
      */
-    private int paintColor = Color.BLACK;
+    private int paintColor;
 
     /**
      * 画笔宽度
      */
-    private int strokeWidth = 5;
+    private int paintStroke;
 
     /**
      * 画笔
@@ -78,6 +80,7 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
     public DoodleView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
+        initAttr(context, attrs);
         initPaint();
     }
 
@@ -87,10 +90,20 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
         this.setFocusable(true);
     }
 
+    private void initAttr(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DoodleView);
+
+        paintType = typedArray.getInt(R.styleable.DoodleView_dv_type, PaintType.PATH);
+        paintColor = typedArray.getColor(R.styleable.DoodleView_dv_color, Color.BLACK);
+        paintStroke = typedArray.getDimensionPixelSize(R.styleable.DoodleView_dv_stroke, 100);
+
+        typedArray.recycle();
+    }
+
     private void initPaint() {
         paint = new Paint();
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(strokeWidth);
+        paint.setStrokeWidth(paintStroke);
     }
 
     @Override
@@ -146,22 +159,22 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
     private void initDoodlePaint(float x, float y) {
         switch (paintType) {
             case PaintType.PATH:
-                doodlePaint = new PathPaint(x, y, strokeWidth, paintColor);
+                doodlePaint = new PathPaint(x, y, paintStroke, paintColor);
                 break;
             case PaintType.LINE:
-                doodlePaint = new LinePaint(x, y, strokeWidth, paintColor);
+                doodlePaint = new LinePaint(x, y, paintStroke, paintColor);
                 break;
             case PaintType.RECT:
-                doodlePaint = new RectPaint(x, y, strokeWidth, paintColor);
+                doodlePaint = new RectPaint(x, y, paintStroke, paintColor);
                 break;
             case PaintType.CIRCLE:
-                doodlePaint = new CirclePaint(x, y, strokeWidth, paintColor);
+                doodlePaint = new CirclePaint(x, y, paintStroke, paintColor);
                 break;
             case PaintType.FILL_RECT:
-                doodlePaint = new FillRectPaint(x, y, strokeWidth, paintColor);
+                doodlePaint = new FillRectPaint(x, y, paintStroke, paintColor);
                 break;
             case PaintType.FILLED_CIRCLE:
-                doodlePaint = new FillCirclePaint(x, y, strokeWidth, paintColor);
+                doodlePaint = new FillCirclePaint(x, y, paintStroke, paintColor);
                 break;
             default:
                 break;
@@ -183,7 +196,7 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
      *
      * @param colorStr 十六进制颜色值(#ff0000)
      */
-    public DoodleView setColor(String colorStr) {
+    public DoodleView setPaintColor(String colorStr) {
         this.paintColor = Color.parseColor(colorStr);
         return this;
     }
@@ -193,7 +206,7 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
      *
      * @param colorInt 颜色值
      */
-    public DoodleView setColor(@ColorInt int colorInt) {
+    public DoodleView setPaintColor(@ColorInt int colorInt) {
         this.paintColor = colorInt;
         return this;
     }
@@ -201,10 +214,10 @@ public class DoodleView extends SurfaceView implements SurfaceHolder.Callback {
     /**
      * 设置画笔宽度
      *
-     * @param strokeWidth 画笔宽度
+     * @param paintStroke 画笔宽度
      */
-    public DoodleView setStrokeWidth(int strokeWidth) {
-        this.strokeWidth = strokeWidth;
+    public DoodleView setPaintStroke(int paintStroke) {
+        this.paintStroke = paintStroke;
         return this;
     }
 
