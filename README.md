@@ -20,24 +20,24 @@
 
 #### 1.1 布局中添加
 ```android
-  <ysn.com.view.doodle.DoodleView
-        android:id="@+id/main_activity_doodle_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:dv_color="@color/colorPrimary"
-        app:dv_stroke="10dp"
-        app:dv_type="path" />
+<ysn.com.view.doodle.DoodleView
+      android:id="@+id/main_activity_doodle_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:dv_color="@color/colorPrimary"
+      app:dv_stroke="10dp"
+      app:dv_type="path" />
 ```
 
 #### 1.2 设置数据
 ```android
-    // 设置画笔类型
-    doodleView.setPaintType(which);
-    // 设置画笔颜色
-    doodleView.setPaintColor("#000000");
-    doodleView.setPaintColor(getResources().getColor(R.color.colorAccent));
-    // 设置画笔宽度
-    doodleView.setPaintStroke(5);
+// 设置画笔类型
+doodleView.setPaintType(which);
+// 设置画笔颜色
+doodleView.setPaintColor("#000000");
+doodleView.setPaintColor(getResources().getColor(R.color.colorAccent));
+// 设置画笔宽度
+doodleView.setPaintStroke(5);
 ```
 
 ### 2. 配置属性([Attributes])
@@ -68,7 +68,7 @@ allprojects {
 在需要添加依赖的 Module 下添加以下信息，使用方式和普通的远程仓库一样。
 
 ```android
-    implementation 'com.github.yangsanning:DoodleView:v1.0.0'
+implementation 'com.github.yangsanning:DoodleView:v1.0.0'
 ```
 
 [DoodleView]:https://github.com/yangsanning/DoodleView/blob/master/doodleview/src/main/java/ysn/com/view/doodle/DoodleView.java
