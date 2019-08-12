@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
 
     defaultConfig {
-        applicationId "ysn.com.demo"
+        applicationId "ysn.com.demo.doodle"
         minSdkVersion  rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
@@ -27,6 +27,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.supportLibs
+    implementation rootProject.ext.rxJavaLibs
+
+    // 权限控制
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+
+    implementation project(":doodleview")
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

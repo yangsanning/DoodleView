@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.yangsanning'
+
+android {
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion  rootProject.ext.version.minSdkVersion
+        targetSdkVersion rootProject.ext.version.targetSdkVersion
+        versionCode rootProject.ext.version.versionCode
+        versionName  rootProject.ext.version.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation rootProject.ext.supportLibs
+
+    implementation 'com.github.yangsanning:BasePaint:v1.0.0'
+}
